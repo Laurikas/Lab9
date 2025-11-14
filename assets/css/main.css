@@ -4239,3 +4239,398 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* =========================================================
+   STUDENT CUSTOM REDESIGN – OVERRIDES
+   ========================================================= */
+
+/* ---------- Design tokens: typography, spacing, surfaces ---------- */
+:root {
+  /* Typography */
+  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Raleway", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --size-h1: clamp(3.2rem, 4vw, 4rem);
+  --size-h2: clamp(2.4rem, 3vw, 3rem);
+  --size-h3: clamp(1.6rem, 2.2vw, 2rem);
+  --size-body-lg: 1.05rem;
+  --size-body: 0.95rem;
+
+  --lh-tight: 1.1;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.8;
+
+  --ls-wide: 0.18em;
+  --ls-normal: 0.02em;
+
+  /* Spacing scale (4px base) */
+  --space-1: 0.25rem;  /* 4px  */
+  --space-2: 0.5rem;   /* 8px  */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 2.5rem;   /* 40px */
+  --space-8: 3rem;     /* 48px */
+  --space-9: 4rem;     /* 64px */
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.5rem;
+
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --shadow-subtle: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- TYPOGRAPHY SYSTEM: h1–h3 + paragraphs ---------- */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+}
+
+h1,
+.display-1 {
+  font-family: var(--font-heading);
+  font-size: var(--size-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+h2,
+.section-title h2,
+.page-title h1 {
+  font-family: var(--font-heading);
+  font-size: var(--size-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--size-h3);
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+p {
+  font-size: var(--size-body);
+  line-height: var(--lh-relaxed);
+  letter-spacing: 0.01em;
+}
+
+.section-title p,
+.hero p {
+  font-size: var(--size-body-lg);
+}
+
+/* ---------- INTERACTIVE ELEMENTS: links + buttons ---------- */
+
+/* Links – default / hover / active */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.15em;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), #ffffff 15%);
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+a:active {
+  color: color-mix(in srgb, var(--accent-color), #000000 30%);
+  transform: translateY(1px);
+}
+
+/* Buttons – default / hover / active (site-wide) */
+.btn,
+button,
+.header .btn-getstarted,
+.services .cta-box .cta-btn,
+.contact .php-email-form button[type=submit],
+.portfolio-details .sidebar .info-card .btn-primary,
+.error-404 .error-box .error-actions a {
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-5);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border: 1px solid transparent;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
+}
+
+.btn:hover,
+button:hover,
+.header .btn-getstarted:hover,
+.services .cta-box .cta-btn:hover,
+.contact .php-email-form button[type=submit]:hover,
+.portfolio-details .sidebar .info-card .btn-primary:hover,
+.error-404 .error-box .error-actions a.btn-home:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--accent-color), #ffffff 8%);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+}
+
+.btn:active,
+button:active,
+.header .btn-getstarted:active,
+.services .cta-box .cta-btn:active,
+.contact .php-email-form button[type=submit]:active,
+.portfolio-details .sidebar .info-card .btn-primary:active,
+.error-404 .error-box .error-actions a:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background: color-mix(in srgb, var(--accent-color), #000000 20%);
+}
+
+/* Secondary “outline” button variant used on 404 page */
+.error-404 .error-box .error-actions a.btn-support {
+  background: transparent;
+  color: var(--accent-color);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.error-404 .error-box .error-actions a.btn-support:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+/* ---------- COMPONENT 1: NAVBAR restyle ---------- */
+.header {
+  padding-block: var(--space-2);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.45);
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.navmenu a,
+.navmenu a:focus {
+  padding-inline: var(--space-3);
+  padding-block: var(--space-2);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.navmenu li:hover > a,
+.navmenu .active,
+.navmenu .active:focus {
+  background: color-mix(in srgb, var(--accent-color), transparent 88%);
+  color: var(--accent-color);
+}
+
+/* ---------- COMPONENT 2: BREADCRUMBS restyle ---------- */
+.page-title {
+  padding-block: var(--space-3);
+}
+
+.page-title .breadcrumbs ol {
+  gap: var(--space-1);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-title .breadcrumbs ol li {
+  position: relative;
+  padding-inline: var(--space-1);
+}
+
+.page-title .breadcrumbs ol li + li::before {
+  content: "•";
+  padding-right: var(--space-1);
+}
+
+/* ---------- SPACING SCALE + SURFACES (3+ sections) ---------- */
+/* Apply consistent vertical spacing */
+.hero,
+.about,
+.services,
+.resume,
+.contact {
+  padding-block: var(--space-9);
+}
+
+/* Section titles */
+.section-title {
+  margin-bottom: var(--space-7);
+}
+
+/* Card-like surfaces across sections */
+.about .profile-card,
+.services .service-item,
+.resume .experience-section .exp-card,
+.resume .education-section .timeline-track .timeline-item .timeline-content,
+.contact .info-item,
+.contact .php-email-form {
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Grid gaps aligned to scale */
+.about .content-wrapper .details-grid,
+.resume .experience-section .experience-cards {
+  gap: var(--space-4);
+}
+
+/* ---------- BACK-TO-TOP (scroll-top) appearance ---------- */
+.scroll-top {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-top i {
+  font-size: 1.5rem;
+}
+
+.scroll-top:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   OPTIONAL TASKS
+   ========================================================= */
+
+/* ---------- Styled lists with pseudo-elements / counters ---------- */
+
+/* Unordered check-list */
+.list-check {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: check-counter;
+}
+
+.list-check li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+}
+
+.list-check li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+}
+
+/* Ordered steps list with nested unordered list */
+.list-steps {
+  list-style: none;
+  counter-reset: step-counter;
+  padding-left: 0;
+}
+
+.list-steps > li {
+  counter-increment: step-counter;
+  position: relative;
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+
+.list-steps > li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-color), transparent 10%);
+  color: var(--contrast-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Nested UL inside .list-steps (for the “nested list” requirement) */
+.list-steps ul {
+  list-style: none;
+  padding-left: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.list-steps ul li {
+  position: relative;
+  padding-left: var(--space-4);
+  margin-bottom: var(--space-1);
+}
+
+.list-steps ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+/* ---------- Tables / data blocks ---------- */
+
+.table-data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table-data thead {
+  background: color-mix(in srgb, var(--accent-color), transparent 85%);
+}
+
+.table-data th,
+.table-data td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+}
+
+.table-data tbody tr:nth-child(odd) {
+  background: color-mix(in srgb, var(--surface-color), transparent 30%);
+}
+
+.table-data tbody tr:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+}
+
+.table-data th {
+  text-align: left;
+  font-weight: 600;
+}
+
+.table-data td.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
